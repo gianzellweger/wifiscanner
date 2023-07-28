@@ -93,6 +93,7 @@ impl fmt::Display for Error {
             }
             Error::UnsupportedPlatform => {
                 write!(f, "Unsupported platform: {}", std::env::consts::OS)
+            }
         }
     }
 }
