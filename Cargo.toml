@@ -15,3 +15,6 @@ name = "wifiscanner"
 [dependencies]
 regex = "1"
 itertools = "0.10.0"
+
+[features]
+compile-anyway = []

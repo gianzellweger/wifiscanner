@@ -14,4 +14,9 @@ mod windows;
 pub(crate) use self::windows::*;
 
 #[cfg(not(any(target_os = "macos", target_os = "linux", target_os = "windows")))]
-compile_error!("wifiscan doesn't compile for this platform yet");
+compile_error!("wifiscan doesn't compile for this platform yet. Use the compile-anyway feature to compile this crate anyway");
+
+#[cfg(all(not(any(target_os = "macos", target_os = "linux", target_os = "windows")), feature = "compile-anyway"))]
+mod lib;
+#[cfg(all(not(any(target_os = "macos", target_os = "linux", target_os = "windows")), feature = "compile-anyway"))]
+pub(crate) fn scan() -> lib::Result<Vec<lib::Wifi>> { Err(UnsupportedPlatform) }
