@@ -60,6 +60,7 @@ pub enum Error {
     FailedToParse,
     NoValue,
     HeaderNotFound(&'static str),
+    UnsupportedPlatform
 }
 
 /// Wifi struct used to return information about wifi hotspots
@@ -90,6 +91,8 @@ impl fmt::Display for Error {
             Error::HeaderNotFound(header) => {
                 write!(f, "Did not find header {} but expected it", header)
             }
+            Error::UnsupportedPlatform => {
+                write!(f, "Unsupported platform: {}", std::env::consts::OS)
         }
     }
 }
